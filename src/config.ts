@@ -36,6 +36,50 @@ Do NOT use for tech stack only -- use website_detect_tech_stack instead. Do NOT 
         },
         required: ["domain"],
       },
+      outputSchema: {
+        type: "object",
+        properties: {
+          domain: { type: "string", description: "Domain enriched" },
+          name: { type: "string", description: "Company name" },
+          description: { type: "string", description: "Company description / tagline" },
+          logo: { type: "string", description: "Logo URL" },
+          favicon: { type: "string", description: "Favicon URL" },
+          social: {
+            type: "object",
+            description: "Social media profiles",
+            properties: {
+              linkedin: { type: "string" },
+              twitter: { type: "string" },
+              facebook: { type: "string" },
+              github: { type: "string" },
+              instagram: { type: "string" },
+            },
+          },
+          contact: {
+            type: "object",
+            description: "Contact information",
+            properties: {
+              emails: { type: "array", items: { type: "string" } },
+              phones: { type: "array", items: { type: "string" } },
+              address: { type: "string" },
+            },
+          },
+          tech_stack: { type: "array", items: { type: "string" }, description: "Detected technologies" },
+          meta: {
+            type: "object",
+            description: "Page meta information",
+            properties: {
+              title: { type: "string" },
+              og_title: { type: "string" },
+              og_image: { type: "string" },
+              language: { type: "string" },
+            },
+          },
+          pages_scanned: { type: "array", items: { type: "string" }, description: "Pages scanned during enrichment" },
+          scan_time_ms: { type: "number", description: "Scan duration in milliseconds" },
+        },
+        required: ["domain", "name"],
+      },
     },
   ],
 };
