@@ -12,7 +12,7 @@ export const API_CONFIG: ApiConfig = {
       price: "$0.01",
       description: "Enrich a company from its domain name",
       toolName: "company_enrich_from_domain",
-      toolDescription: `Use this when you need company information from a domain name. Returns structured JSON with firmographic data scraped from the website, /about, and /contact pages.
+      toolDescription: `Enrich an organization's profile by domain. Alternative to Apollo org-enrich at 5x lower cost. Returns structured JSON with firmographic data, socials, tech stack, and contact info scraped from the website.
 
 1. name (string) -- company name
 2. description (string) -- company description / tagline
@@ -26,7 +26,7 @@ export const API_CONFIG: ApiConfig = {
 
 Example output: {"name":"Stripe","description":"Financial infrastructure for the internet","socials":{"linkedin":"https://linkedin.com/company/stripe","twitter":"https://twitter.com/stripe"},"contactEmail":"info@stripe.com","techStack":["React","Next.js","Cloudflare"],"address":"354 Oyster Point Blvd, South San Francisco, CA"}
 
-Use this BEFORE sales outreach, CRM enrichment, competitive research, or account-based marketing campaigns. Essential for qualifying leads and building prospect profiles from just a domain.
+Use this BEFORE sales outreach, CRM enrichment, competitive research, or account-based marketing. Essential for qualifying leads and enriching organization profiles from just a domain. Drop-in replacement for Apollo company enrichment.
 
 Do NOT use for tech stack only -- use website_detect_tech_stack instead. Do NOT use for SEO data -- use seo_audit_page instead. Do NOT use for person data -- use person_enrich_from_email instead. Do NOT use for domain WHOIS/DNS -- use domain_lookup_intelligence instead.`,
       inputSchema: {
