@@ -1,5 +1,20 @@
 import type { Hono } from "hono";
 
+
+// ATXP: requirePayment only fires inside an ATXP context (set by atxpHono middleware).
+// For raw x402 requests, the existing @x402/hono middleware handles the gate.
+// If neither protocol is active (ATXP_CONNECTION unset), tryRequirePayment is a no-op.
+async function tryRequirePayment(price: number): Promise<void> {
+  if (!process.env.ATXP_CONNECTION) return;
+  try {
+    const { requirePayment } = await import("@atxp/server");
+    const BigNumber = (await import("bignumber.js")).default;
+    await requirePayment({ price: BigNumber(price) });
+  } catch (e: any) {
+    if (e?.code === -30402) throw e;
+  }
+}
+
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36";
 
 interface CompanyData {
@@ -234,6 +249,7 @@ function mergeSocials(a: ReturnType<typeof extractSocials>, b: ReturnType<typeof
 
 export function registerRoutes(app: Hono) {
   app.get("/api/enrich", async (c) => {
+    await tryRequirePayment(0.01);
     const domain = c.req.query("domain");
     if (!domain) return c.json({ error: "Missing required parameter: domain" }, 400);
 
