@@ -35,7 +35,7 @@ Any x402-aware client ([`@x402/fetch`](https://www.npmjs.com/package/@x402/fetch
 
 | Tool | Method | Path | Price | Description |
 |---|---|---|---|---|
-| `company_enrich_from_domain` | GET | `/api/enrich` | $0.01 | Enrich a company from its domain name |
+| `company_enrich_from_domain` | GET | `/api/enrich` | $0.02 | Enrich a company from its domain name |
 
 ### `company_enrich_from_domain`
 
