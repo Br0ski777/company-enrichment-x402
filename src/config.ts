@@ -9,7 +9,7 @@ export const API_CONFIG: ApiConfig = {
     {
       method: "GET",
       path: "/api/enrich",
-      price: "$0.01",
+      price: "$0.02",
       description: "Enrich a company from its domain name",
       toolName: "company_enrich_from_domain",
       toolDescription: `Enrich an organization's profile by domain. Alternative to Apollo org-enrich at 5x lower cost. Returns structured JSON with firmographic data, socials, tech stack, and contact info scraped from the website.
